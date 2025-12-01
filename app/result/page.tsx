@@ -14,7 +14,43 @@ export default function ResultPage() {
   const { answers, reset } = useDecision();
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [shareText, setShareText] = useState("Compartir resultado");
   const { trigger } = useHaptic();
+
+  const handleShare = async () => {
+    trigger.light();
+    const verdict = getVerdict(score);
+    const shareContent = `🎯 DeciMate dice: ${verdict.text}\n\n📊 Probabilidad de éxito: ${score}%\n\n¿Tenés que decidir algo? Probá DeciMate 👉 ${window.location.origin}`;
+
+    // Try native share API first (mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Mi resultado en DeciMate',
+          text: shareContent,
+        });
+        trigger.success();
+      } catch (err) {
+        // User cancelled or error occurred
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Error sharing:', err);
+        }
+      }
+    } else {
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(shareContent);
+        setShareText("¡Copiado!");
+        trigger.success();
+        setTimeout(() => setShareText("Compartir resultado"), 2000);
+      } catch (err) {
+        console.error('Error copying to clipboard:', err);
+        setShareText("Error al copiar");
+        trigger.error();
+        setTimeout(() => setShareText("Compartir resultado"), 2000);
+      }
+    }
+  };
 
   useEffect(() => {
     // Calculate Score Logic
@@ -107,9 +143,13 @@ export default function ResultPage() {
           </div>
 
           <div className="flex flex-col gap-4 w-full">
-            <NeonButton variant="ghost" className="w-full flex items-center justify-center gap-2 border-white/20">
+            <NeonButton 
+              variant="ghost" 
+              className="w-full flex items-center justify-center gap-2 border-white/20"
+              onClick={handleShare}
+            >
               <Share2 className="w-5 h-5" />
-              Compartir resultado
+              {shareText}
             </NeonButton>
             
             <Link href="/question/1" onClick={reset} className="w-full">
