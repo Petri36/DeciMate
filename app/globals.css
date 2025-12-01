@@ -43,74 +43,13 @@ body {
   font-feature-settings: "ss01", "ss02", "cv01", "cv02";
 }
 
-/* Custom Range Slider Styles - Mobile Optimized */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-/* Track Styles */
-input[type="range"]::-webkit-slider-track {
-  background: rgba(255, 255, 255, 0.2);
-  height: 8px;
-  border-radius: 8px;
-}
-
-input[type="range"]::-moz-range-track {
-  background: rgba(255, 255, 255, 0.2);
-  height: 8px;
-  border-radius: 8px;
-}
-
-/* Thumb Styles - LARGE for mobile */
+/* Slider thumb más grande para móviles */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #A259FF, #00F0FF);
-  cursor: grab;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(162, 89, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s ease;
-  margin-top: -10px; /* Center on track */
+  width: 24px;
+  height: 24px;
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #A259FF, #00F0FF);
-  cursor: grab;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(162, 89, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s ease;
-}
-
-/* Hover & Active States */
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 6px 16px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, #00F0FF, #A259FF);
-}
-
-input[type="range"]::-moz-range-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 6px 16px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, #00F0FF, #A259FF);
-}
-
-input[type="range"]:active::-webkit-slider-thumb {
-  cursor: grabbing;
-  transform: scale(1.25);
-  box-shadow: 0 0 40px rgba(57, 255, 20, 0.9), 0 8px 20px rgba(0, 0, 0, 0.6);
-}
-
-input[type="range"]:active::-moz-range-thumb {
-  cursor: grabbing;
-  transform: scale(1.25);
-  box-shadow: 0 0 40px rgba(57, 255, 20, 0.9), 0 8px 20px rgba(0, 0, 0, 0.6);
+  width: 24px;
+  height: 24px;
 }
