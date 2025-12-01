@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-void: #0B0B1F;
+  --color-passion: #E01E5A;
+  --color-neon-lime: #39FF14;
+  --color-cumbia-violet: #A259FF;
+  --color-electric-cyan: #00F0FF;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-neue-montreal), sans-serif;
+  --font-display: var(--font-clash-display), sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glitch: glitch 1s linear infinite;
+
+  @keyframes glitch {
+    2%, 64% { transform: translate(2px,0) skew(0deg); }
+    4%, 60% { transform: translate(-2px,0) skew(0deg); }
+    62% { transform: translate(0,0) skew(5deg); }
   }
 }
 
+:root {
+  --background: #0B0B1F;
+  --foreground: #ffffff;
+}
+
+/* Custom Utilities */
+@utility glass-panel {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)];
+}
+
+@utility text-glow {
+  text-shadow: 0 0 10px rgba(162, 89, 255, 0.5), 0 0 20px rgba(162, 89, 255, 0.3);
+}
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-void text-white antialiased overflow-x-hidden;
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
 }
